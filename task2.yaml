@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: task21
+  namespace: lesson21
+spec:
+  containers:
+  - name: multitool
+    image: praqma/network-multitool
+    command: ['sh', '-c', 'sleep infinity']
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+      - name: shared
+        mountPath: /shared
+  volumes:
+    - name: shared
+      hostPath:
+        path: /var/log
